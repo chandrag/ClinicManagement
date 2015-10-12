@@ -1,0 +1,42 @@
+@CHARSET "ISO-8859-1";
+
+#content-area {
+	min-height: 300px;
+}
+
+.pres-row {
+	margin-bottom: 5px;
+}
+
+.icare-label {
+	padding-top: 5px !important;
+}
+
+.patient-queue-container {
+	background-color: #F8FAFB;
+	border-color: #DDE2E2;
+}
+
+.onhold-label {
+	font-size: 10px;
+	color: #C0392B;
+	text-align: right;
+}
+
+.onhold-label:HOVER {
+	cursor: pointer;
+	font-weight: bold;
+}
+
+.label-patient-name {
+	font-size: 20px;
+}
+
+.login-header-spacer {
+	height: 120px;
+}
+
+.site-title {
+	color: #EE5921;
+	font-size: 40px;
+}

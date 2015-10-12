@@ -10,6 +10,7 @@ version = '1.0'
 def SpringVersion = '4.0.0.RELEASE'
 def HamcrestVersion = '1.3'
 def HibernateVersion = '4.3.0.Final'
+def MySqlDriverVersion = '5.1.6'
 
 jar {
     manifest {
@@ -29,8 +30,11 @@ ext{
             fileupload: "commons-fileupload:commons-fileupload:1.2.1",
             io        : "commons-io:commons-io:2.4",
             xmlapis   : "xml-apis:xml-apis:1.4.01",
-            lang      : 'commons-lang:commons-lang:2.6'
+            lang      : 'commons-lang:commons-lang:2.6',
+            collections : "commons-collections:commons-collections:3.2.1"
     ]
+    
+    mysql = "mysql:mysql-connector-java:${MySqlDriverVersion}"
     
 	spring = [
             web           	: "org.springframework:spring-web:${SpringVersion}",
@@ -98,7 +102,9 @@ repositories {
 }
 
 dependencies {
-	compile spring.jpa,spring.core,spring.web,spring.webmvc,spring.security
+	compile spring.jpa,spring.core,spring.web,spring.webmvc,spring.security,commons.collections
 	compile jodatime,hibernate.core,hibernate.entitymanager,servletApi,itextpdf,itextxml
+	compile commons.fileupload,javax.jstl,javax.el
+	compile mysql,fasterXml.databind,fasterXml.jsonprovider
     testCompile testng,jmock.core,jmock.legacy,spring.test
 }

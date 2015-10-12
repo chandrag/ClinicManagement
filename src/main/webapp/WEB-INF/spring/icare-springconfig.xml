@@ -54,11 +54,6 @@
 		</property>
 	</bean>
 
-	<!-- Initialize Database -->
-	<jdbc:initialize-database>
-		<jdbc:script location="classpath:config/scripts/ICare.sql" />
-	</jdbc:initialize-database>
-
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
 

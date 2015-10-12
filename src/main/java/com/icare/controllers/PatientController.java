@@ -53,13 +53,11 @@ public class PatientController {
 
 	@RequestMapping(value = "home")
 	public String renderPatientHome() {
-		LOGGER.info("Reddering Patient Home..");
 		return PATIENT_MENUS;
 	}
 
 	@RequestMapping(value = "addpatient")
 	public String renderAddPatient() {
-		LOGGER.info("Rendering Add Patient...");
 		return ADD_PATIENT;
 	}
 
