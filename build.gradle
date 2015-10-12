@@ -1,0 +1,104 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'eclipse-wtp'
+apply plugin: 'war'
+apply plugin: 'jetty'
+apply plugin: 'jacoco'
+
+sourceCompatibility = 1.7
+version = '1.0'
+def SpringVersion = '4.0.0.RELEASE'
+def HamcrestVersion = '1.3'
+def HibernateVersion = '4.3.0.Final'
+
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'Clinic Management',
+                   'Implementation-Version': version
+    }
+}
+
+ext{
+	
+	hibernate = [
+		core : "org.hibernate:hibernate-core:${HibernateVersion}",
+		entitymanager : "org.hibernate:hibernate-entitymanager:${HibernateVersion}"
+	]
+	
+	 commons = [
+            fileupload: "commons-fileupload:commons-fileupload:1.2.1",
+            io        : "commons-io:commons-io:2.4",
+            xmlapis   : "xml-apis:xml-apis:1.4.01",
+            lang      : 'commons-lang:commons-lang:2.6'
+    ]
+    
+	spring = [
+            web           	: "org.springframework:spring-web:${SpringVersion}",
+            webmvc        	: "org.springframework:spring-webmvc:${SpringVersion}",
+            core          	: "org.springframework:spring-core:${SpringVersion}",
+            beans         	: "org.springframework:spring-beans:${SpringVersion}",
+            expression    	: "org.springframework:spring-expression:${SpringVersion}",
+            contextSupport	: "org.springframework:spring-context-support:${SpringVersion}",
+            jdbc          	: "org.springframework:spring-jdbc:${SpringVersion}",
+            jpa         	: "org.springframework.data:spring-data-jpa:1.8.1.RELEASE",
+            test          	: "org.springframework:spring-test:${SpringVersion}",
+            security 		: "org.springframework.security:spring-security-web:${SpringVersion}",
+            orm 			: "org.springframework:spring-orm:${SpringVersion}"
+    ]
+    
+    javax = [
+    	jstl : 'javax.servlet:jstl:1.2',
+    	el  : 'javax.el:javax.el-api:2.2.4'
+    ]
+    
+    jmock = [
+    	core : "org.jmock:jmock:2.6.0",
+    	legacy : "org.jmock:jmock-legacy:2.6.0" 
+    ]
+    
+    hamcrest = [
+            core   : "org.hamcrest:hamcrest-core:${HamcrestVersion}",
+            library: "org.hamcrest:hamcrest-library:${HamcrestVersion}",
+            all : "org.hamcrest:hamcrest-all:${HamcrestVersion}"
+    ]
+    
+    mongoDB = "org.mongodb:mongo-java-driver:2.12.2"
+    
+    fasterXml = [
+    	databind:"com.fasterxml.jackson.core:jackson-databind:2.2.3",
+    	jsonprovider : 'com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:2.3.0'
+    ]
+    
+	jsonlib = 'org.json:json:20090211'
+	servletApi = 'javax.servlet:javax.servlet-api:3.0.1'
+	
+	validation = [
+            javax    : 'javax.validation:validation-api:1.1.0.Final',
+            hibernate: 'org.hibernate:hibernate-validator:5.1.3.Final'
+    ]
+	
+	jodatime = 'joda-time:joda-time:2.8.1'
+	
+	// Test Dependencies
+	testng = "org.testng:testng:6.9.4"
+	
+	itextpdf = "com.itextpdf:itextpdf:5.4.2"
+	itextxml = "com.itextpdf.tool:xmlworker:5.4.2"
+
+}
+
+test{
+	useTestNG(){
+		
+	}
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+	compile spring.jpa,spring.core,spring.web,spring.webmvc,spring.security
+	compile jodatime,hibernate.core,hibernate.entitymanager,servletApi,itextpdf,itextxml
+    testCompile testng,jmock.core,jmock.legacy,spring.test
+}
