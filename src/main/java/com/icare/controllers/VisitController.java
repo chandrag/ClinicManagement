@@ -68,14 +68,6 @@ public class VisitController {
 		return renderFetchVisits();
 	}
 
-	@RequestMapping(value = "generateslip")
-	public String generateSlip(@ModelAttribute("vid") Integer visitId,
-			Model model) {
-		VisitBean visitBean = visitService.findById(visitId);
-		model.addAttribute(MODEL_VISIT, visitBean);
-		return PAGE_PRESCRIPTION_SLIP;
-	}
-
 	private List<VisitBean> fetchVisit(Integer patientId, Model model) {
 		List<VisitBean> visits = null;
 		try {
@@ -90,34 +82,6 @@ public class VisitController {
 			model.addAttribute(MessageConstants.MESSAGE, e.getMessage());
 		}
 		return visits;
-	}
-
-	@RequestMapping(value = "updatevisit")
-	public String renderUpdateVisit(@ModelAttribute("vi") Integer visitId,
-			Model model) {
-		LOGGER.info("Rendering Update Visit...");
-		LOGGER.debug("Visit Id : {}", visitId);
-		VisitBean visitBean = visitService.findById(visitId);
-		model.addAttribute(MODEL_VISIT, visitBean);
-		return UPDATE_VISIT;
-	}
-
-	@RequestMapping(value = "update")
-	public String update(VisitBean visitBean, Model model) {
-		try {
-			LOGGER.info("Updating visit...");
-			LOGGER.debug("VisitBean : {}", visitBean);
-			visitService.update(visitBean);
-			model.addAttribute(MessageConstants.MESSAGE,
-					DETAILS_UPDATED_SUCCESSFULLY);
-			model.addAttribute(MessageConstants.MOD_SUCCESS, true);
-		} catch (VisitException e) {
-			LOGGER.error("Exception occured while updating visit : {}", e);
-			model.addAttribute(MessageConstants.MESSAGE, e.getMessage());
-			model.addAttribute(MessageConstants.MOD_SUCCESS, false);
-		}
-
-		return renderUpdateVisit(visitBean.getId(), model);
 	}
 
 }

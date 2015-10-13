@@ -1,14 +1,9 @@
 package com.icare.entities;
 
-import java.util.Arrays;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -18,42 +13,15 @@ public class PatientEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	@Column(name = "first_name")
-	private String firstName;
-	@Column(name = "middle_name")
-	private String middleName;
-	@Column(name = "last_name")
-	private String lastName;
-	@OneToOne(mappedBy = "patient", cascade = CascadeType.ALL)
-	private ContactEntity contact;
-	@Column(name = "profile_pic")
-	private byte[] profilePic;
-
-	public PatientEntity() {
-
-	}
-
-	public PatientEntity(int id, String firstName, String middleName,
-			String lastName, ContactEntity contact) {
-		super();
-		this.id = id;
-		this.firstName = firstName;
-		this.middleName = middleName;
-		this.lastName = lastName;
-		this.contact = contact;
-	}
-
-	public PatientEntity(int id) {
-		super();
-		this.id = id;
-	}
-
-	public PatientEntity(String firstName, String middleName, String lastName) {
-		super();
-		this.firstName = firstName;
-		this.middleName = middleName;
-		this.lastName = lastName;
-	}
+	private Integer mrdNo;
+	private String name;
+	private int age;
+	private String sex;
+	private String address;
+	private long contactNo;
+	private String referredBy;
+	private double fees;
+	private double procedureFees;
 
 	public int getId() {
 		return id;
@@ -63,66 +31,96 @@ public class PatientEntity {
 		this.id = id;
 	}
 
-	public String getFirstName() {
-		return firstName;
+	public Integer getMrdNo() {
+		return mrdNo;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setMrdNo(Integer mrdNo) {
+		this.mrdNo = mrdNo;
 	}
 
-	public String getMiddleName() {
-		return middleName;
+	public String getName() {
+		return name;
 	}
 
-	public void setMiddleName(String middleName) {
-		this.middleName = middleName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getLastName() {
-		return lastName;
+	public int getAge() {
+		return age;
 	}
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setAge(int age) {
+		this.age = age;
 	}
 
-	public ContactEntity getContact() {
-		return contact;
+	public String getSex() {
+		return sex;
 	}
 
-	public void setContact(ContactEntity contact) {
-		this.contact = contact;
+	public void setSex(String sex) {
+		this.sex = sex;
 	}
 
-	public byte[] getProfilePic() {
-		return profilePic;
+	public String getAddress() {
+		return address;
 	}
 
-	public void setProfilePic(byte[] profilePic) {
-		this.profilePic = profilePic;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
-	@Override
-	public String toString() {
-		return "PatientModel [id=" + id + ", firstName=" + firstName
-				+ ", middleName=" + middleName + ", lastName=" + lastName
-				+ ", contact=" + contact + ", profilePic="
-				+ Arrays.toString(profilePic) + "]";
+	public long getContactNo() {
+		return contactNo;
+	}
+
+	public void setContactNo(long contactNo) {
+		this.contactNo = contactNo;
+	}
+
+	public String getReferredBy() {
+		return referredBy;
+	}
+
+	public void setReferredBy(String referredBy) {
+		this.referredBy = referredBy;
+	}
+
+	public double getFees() {
+		return fees;
+	}
+
+	public void setFees(double fees) {
+		this.fees = fees;
+	}
+
+	public double getProcedureFees() {
+		return procedureFees;
+	}
+
+	public void setProcedureFees(double procedureFees) {
+		this.procedureFees = procedureFees;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((contact == null) ? 0 : contact.hashCode());
-		result = prime * result
-				+ ((firstName == null) ? 0 : firstName.hashCode());
+		result = prime * result + ((address == null) ? 0 : address.hashCode());
+		result = prime * result + age;
+		result = prime * result + (int) (contactNo ^ (contactNo >>> 32));
+		long temp;
+		temp = Double.doubleToLongBits(fees);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + id;
+		result = prime * result + ((mrdNo == null) ? 0 : mrdNo.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		temp = Double.doubleToLongBits(procedureFees);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result
-				+ ((lastName == null) ? 0 : lastName.hashCode());
-		result = prime * result
-				+ ((middleName == null) ? 0 : middleName.hashCode());
+				+ ((referredBy == null) ? 0 : referredBy.hashCode());
+		result = prime * result + ((sex == null) ? 0 : sex.hashCode());
 		return result;
 	}
 
@@ -135,29 +133,53 @@ public class PatientEntity {
 		if (getClass() != obj.getClass())
 			return false;
 		PatientEntity other = (PatientEntity) obj;
-		if (contact == null) {
-			if (other.contact != null)
+		if (address == null) {
+			if (other.address != null)
 				return false;
-		} else if (!contact.equals(other.contact))
+		} else if (!address.equals(other.address))
 			return false;
-		if (firstName == null) {
-			if (other.firstName != null)
-				return false;
-		} else if (!firstName.equals(other.firstName))
+		if (age != other.age)
+			return false;
+		if (contactNo != other.contactNo)
+			return false;
+		if (Double.doubleToLongBits(fees) != Double
+				.doubleToLongBits(other.fees))
 			return false;
 		if (id != other.id)
 			return false;
-		if (lastName == null) {
-			if (other.lastName != null)
+		if (mrdNo == null) {
+			if (other.mrdNo != null)
 				return false;
-		} else if (!lastName.equals(other.lastName))
+		} else if (!mrdNo.equals(other.mrdNo))
 			return false;
-		if (middleName == null) {
-			if (other.middleName != null)
+		if (name == null) {
+			if (other.name != null)
 				return false;
-		} else if (!middleName.equals(other.middleName))
+		} else if (!name.equals(other.name))
+			return false;
+		if (Double.doubleToLongBits(procedureFees) != Double
+				.doubleToLongBits(other.procedureFees))
+			return false;
+		if (referredBy == null) {
+			if (other.referredBy != null)
+				return false;
+		} else if (!referredBy.equals(other.referredBy))
+			return false;
+		if (sex == null) {
+			if (other.sex != null)
+				return false;
+		} else if (!sex.equals(other.sex))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "PatientEntity [id=" + id + ", mrdNo=" + mrdNo + ", name="
+				+ name + ", age=" + age + ", sex=" + sex + ", address="
+				+ address + ", contactNo=" + contactNo + ", referredBy="
+				+ referredBy + ", fees=" + fees + ", procedureFees="
+				+ procedureFees + "]";
 	}
 
 }

@@ -197,10 +197,6 @@ public class PrescriptionSlipGenerator {
 		visitBean.setId(201);
 
 		PatientBean patient = new PatientBean();
-		patient.setFirstName("Aron");
-		patient.setId(329);
-		patient.setLastName("Johnson");
-		patient.setMiddleName("David");
 
 		visitBean.setPatient(patient);
 

@@ -1,17 +1,18 @@
 package com.icare.services;
 
-import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import com.icare.beans.PrescriptionBean;
-import com.icare.exceptions.PrescriptionServiceException;
+import com.icare.daos.MedicineDao;
+import com.icare.daos.PrescriptionDao;
 
-public interface PrescriptionService {
+@Service
+public class PrescriptionService {
 
-	void save(PrescriptionBean prescription) throws PrescriptionServiceException;
+	@Autowired
+	private PrescriptionDao prescriptionDao;
 
-	void update(PrescriptionBean prescription)
-			throws PrescriptionServiceException;
+	@Autowired
+	private MedicineDao medicineDao;
 
-	List<PrescriptionBean> fetchByVisitId(int visitId)
-			throws PrescriptionServiceException;
 }

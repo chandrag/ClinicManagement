@@ -1,30 +1,27 @@
 package com.icare.services;
 
-import java.text.ParseException;
-import java.util.List;
-import java.util.Queue;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import com.icare.beans.AppointmentBean;
-import com.icare.beans.AppointmentTypeBean;
-import com.icare.exceptions.AppointmentException;
-import com.icare.exceptions.NoDataFoundException;
+import com.icare.daos.AppointmentDao;
+import com.icare.daos.AppointmentTypeDao;
+import com.icare.daos.PatientDao;
 
-public interface AppointmentService {
+@Service
+public class AppointmentService {
 
-	void save(AppointmentBean appointment) throws AppointmentException;
+	static final Logger LOGGER = LoggerFactory
+			.getLogger(AppointmentService.class);
 
-	AppointmentBean findById(int id) throws NoDataFoundException;
+	@Autowired
+	private AppointmentDao appointmentDao;
 
-	void delete(AppointmentBean appointment) throws NoDataFoundException;
+	@Autowired
+	private AppointmentTypeDao appointmentTypeDao;
 
-	void update(AppointmentBean appointment) throws NoDataFoundException,
-			ParseException;
-
-	List<AppointmentTypeBean> fetchAll() throws NoDataFoundException;
-
-	Queue<AppointmentBean> fetchTodaysAppointments()
-			throws NoDataFoundException;
-
-	int changeStatus(int id, String status);
+	@Autowired
+	private PatientDao patientDao;
 
 }

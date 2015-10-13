@@ -5,39 +5,17 @@ import org.springframework.web.multipart.MultipartFile;
 public class PatientBean {
 
 	private int id;
-	private String firstName;
-	private String middleName;
-	private String lastName;
-	private ContactBean contact;
-	private int searchFor;
-	private String searchText;
+	private int mrdNo;
+	private String name;
+	private int age;
+	private String sex;
+	private String address;
+	private long contactNo;
+	private String referredBy;
+	private double fees;
+	private double procedureFees;
 	private MultipartFile profilePic;
 	private byte[] profileImageBytes;
-
-	public PatientBean() {
-
-	}
-
-	public PatientBean(int id) {
-		super();
-		this.id = id;
-	}
-
-	public PatientBean(String firstName, String middleName, String lastName) {
-		super();
-		this.firstName = firstName;
-		this.middleName = middleName;
-		this.lastName = lastName;
-	}
-
-	public PatientBean(int id, String firstName, String middleName,
-			String lastName) {
-		super();
-		this.id = id;
-		this.firstName = firstName;
-		this.middleName = middleName;
-		this.lastName = lastName;
-	}
 
 	public int getId() {
 		return id;
@@ -47,52 +25,76 @@ public class PatientBean {
 		this.id = id;
 	}
 
-	public String getFirstName() {
-		return firstName;
+	public int getMrdNo() {
+		return mrdNo;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setMrdNo(int mrdNo) {
+		this.mrdNo = mrdNo;
 	}
 
-	public String getMiddleName() {
-		return middleName;
+	public String getName() {
+		return name;
 	}
 
-	public void setMiddleName(String middleName) {
-		this.middleName = middleName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getLastName() {
-		return lastName;
+	public int getAge() {
+		return age;
 	}
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setAge(int age) {
+		this.age = age;
 	}
 
-	public ContactBean getContact() {
-		return contact;
+	public String getSex() {
+		return sex;
 	}
 
-	public void setContact(ContactBean contact) {
-		this.contact = contact;
+	public void setSex(String sex) {
+		this.sex = sex;
 	}
 
-	public int getSearchFor() {
-		return searchFor;
+	public String getAddress() {
+		return address;
 	}
 
-	public void setSearchFor(int searchFor) {
-		this.searchFor = searchFor;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
-	public String getSearchText() {
-		return searchText;
+	public long getContactNo() {
+		return contactNo;
 	}
 
-	public void setSearchText(String searchText) {
-		this.searchText = searchText;
+	public void setContactNo(long contactNo) {
+		this.contactNo = contactNo;
+	}
+
+	public String getReferredBy() {
+		return referredBy;
+	}
+
+	public void setReferredBy(String referredBy) {
+		this.referredBy = referredBy;
+	}
+
+	public double getFees() {
+		return fees;
+	}
+
+	public void setFees(double fees) {
+		this.fees = fees;
+	}
+
+	public double getProcedureFees() {
+		return procedureFees;
+	}
+
+	public void setProcedureFees(double procedureFees) {
+		this.procedureFees = procedureFees;
 	}
 
 	public MultipartFile getProfilePic() {
@@ -113,11 +115,11 @@ public class PatientBean {
 
 	@Override
 	public String toString() {
-		return "PatientBean [id=" + id + ", firstName=" + firstName
-				+ ", middleName=" + middleName + ", lastName=" + lastName
-				+ ", contact=" + contact + ", searchFor=" + searchFor
-				+ ", searchText=" + searchText + ", profilePic=" + profilePic
-				+ "]";
+		return "PatientBean [id=" + id + ", mrdNo=" + mrdNo + ", name=" + name
+				+ ", age=" + age + ", sex=" + sex + ", address=" + address
+				+ ", contactNo=" + contactNo + ", referredBy=" + referredBy
+				+ ", fees=" + fees + ", procedureFees=" + procedureFees
+				+ ", profilePic=" + profilePic + "]";
 	}
 
 }
