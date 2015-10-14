@@ -1,14 +1,19 @@
 package com.icare.controllers;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.icare.beans.PatientBean;
+import com.icare.exceptions.NoDataFoundException;
 import com.icare.exceptions.PatientServiceException;
 import com.icare.services.PatientService;
 import com.icare.services.VisitService;
@@ -49,6 +54,18 @@ public class PatientController {
 	@RequestMapping(value = "search", method = RequestMethod.GET)
 	public String renderSearchPatient() {
 		return ViewNames.SearchPatient.name();
+	}
+
+	@RequestMapping(value = "searchby", method = RequestMethod.GET)
+	public ModelAndView searchBy(@ModelAttribute("searchTxt") String name) {
+		ModelAndView mav = new ModelAndView(ViewNames.SearchPatient.name());
+		try {
+			List<PatientBean> patients = patientService.searchPatient(name);
+			mav.addObject("patients", patients);
+		} catch (NoDataFoundException e) {
+			mav.addObject(MessageConstants.MESSAGE, e.getMessage());
+		}
+		return mav;
 	}
 
 }

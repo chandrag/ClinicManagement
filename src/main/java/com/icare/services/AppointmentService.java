@@ -5,9 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.icare.daos.AppointmentDao;
-import com.icare.daos.AppointmentTypeDao;
-import com.icare.daos.PatientDao;
+import com.icare.repositories.PatientRepository;
 
 @Service
 public class AppointmentService {
@@ -16,12 +14,6 @@ public class AppointmentService {
 			.getLogger(AppointmentService.class);
 
 	@Autowired
-	private AppointmentDao appointmentDao;
-
-	@Autowired
-	private AppointmentTypeDao appointmentTypeDao;
-
-	@Autowired
-	private PatientDao patientDao;
+	private PatientRepository patientDao;
 
 }

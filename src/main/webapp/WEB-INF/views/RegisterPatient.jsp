@@ -79,8 +79,7 @@
 						<div class="row">
 							<div class="col-md-3"></div>
 							<div class="col-md-3">
-								<button ng-click="create()"
-									class="btn btn-md btn-primary btn-block" type="submit">CREATE</button>
+								<button class="btn btn-md btn-primary btn-block" type="submit">CREATE</button>
 							</div>
 							<div class="col-md-3">
 								<button ng-click="update()"

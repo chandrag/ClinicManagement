@@ -10,7 +10,7 @@
 
 	<!-- Hibernate session factory -->
 
-	<jpa:repositories base-package="com.icare.daos" />
+	<jpa:repositories base-package="com.icare.repositories" />
 
 	<bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">

@@ -1,23 +1,27 @@
 package com.icare.services;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import com.icare.beans.PatientBean;
-import com.icare.daos.PatientDao;
 import com.icare.entities.PatientEntity;
+import com.icare.exceptions.NoDataFoundException;
 import com.icare.exceptions.PatientServiceException;
+import com.icare.repositories.PatientRepository;
 
 @Service
 public class PatientService {
 
-	static final Logger LOGGER = LoggerFactory
-			.getLogger(PatientService.class);
+	static final Logger LOGGER = LoggerFactory.getLogger(PatientService.class);
 
 	@Autowired
-	private PatientDao patientDao;
+	private PatientRepository patientRepository;
 
 	public void save(PatientBean patientBean) throws PatientServiceException {
 		PatientEntity patientEntity = new PatientEntity();
@@ -31,8 +35,32 @@ public class PatientService {
 		patientEntity.setProcedureFees(patientBean.getProcedureFees());
 		patientEntity.setReferredBy(patientBean.getReferredBy());
 		patientEntity.setSex(patientBean.getSex());
-		patientDao.save(patientEntity);
+		patientRepository.save(patientEntity);
 		patientBean.setId(patientEntity.getId());
+	}
+
+	public List<PatientBean> searchPatient(String name)
+			throws NoDataFoundException {
+		List<PatientEntity> searchedPatients = patientRepository.findByNameContaining(name);
+		List<PatientBean> patients = new ArrayList<PatientBean>();
+		if (CollectionUtils.isEmpty(searchedPatients)) {
+			throw new NoDataFoundException("No patients found");
+		}
+		for (PatientEntity entity : searchedPatients) {
+			PatientBean bean = new PatientBean();
+			bean.setAddress(entity.getAddress());
+			bean.setAge(entity.getAge());
+			bean.setContactNo(entity.getContactNo());
+			bean.setFees(entity.getFees());
+			bean.setId(entity.getId());
+			bean.setMrdNo(entity.getMrdNo());
+			bean.setName(entity.getName());
+			bean.setProcedureFees(entity.getProcedureFees());
+			bean.setReferredBy(entity.getReferredBy());
+			bean.setSex(entity.getSex());
+			patients.add(bean);
+		}
+		return patients;
 	}
 
 }

@@ -7,7 +7,6 @@
 				<ul class="dropdown-menu">
 					<li><a href="${pageContext.request.contextPath}/patient/appointment">Appointment Form</a></li>
 					<li><a href="${pageContext.request.contextPath}/patient/add">Register New</a></li>
-					<li><a href="${pageContext.request.contextPath}/patient/add">Register Old</a></li>
 					<li><a href="${pageContext.request.contextPath}/patient/add">Register Status</a></li>
 					<li><a href="${pageContext.request.contextPath}/patient/search">Search</a></li>
 				</ul>
