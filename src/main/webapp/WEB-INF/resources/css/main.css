@@ -42,7 +42,7 @@
 }
 
 .prescription-container{
-	border: solid 1px #777777;
+	border: solid 1px #BCBCBC;
 	width: 70%;
 	margin-bottom: 100px;
 	padding: 30px;
@@ -50,10 +50,11 @@
 
 .line-separator{
 	margin-top: 10px;
-	border-bottom:solid 1px #777777;
+	border-bottom:solid 1px #BCBCBC;
 	width: 100%;
 }
 
 .table-bordercolor{
-	border-color: #DDDDDD;
+	border: solid 1px;
+	border-color: #BCBCBC;
 }
