@@ -1,0 +1,5 @@
+Requirements:
+1. History of Old Diseases - [DONE]
+2. Allergies - [DONE]
+3. Search by Reg.No
+4. 

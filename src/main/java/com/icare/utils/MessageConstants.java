@@ -7,7 +7,7 @@ public interface MessageConstants {
 	String MOD_SUCCESS = "SUCCESS";
 
 	String MOD_PATIENT = "PatientTo";
-	String PATIENT_ADD_SUCCESS = "Patient Registered Successfully";
+	String PATIENT_ADD_SUCCESS = "Saved successfully!";
 	String PATIENT_UPDATE_SUCCESS = "Changes Saved Successfully";
 	String PATIENT_DELETE_SUCCESS = "Patient Deleted Successfully";
 	String PATIENT_NOT_FOUND = "Patient Not Found";

@@ -1,6 +1,5 @@
 package com.icare.beans;
 
-import org.springframework.web.multipart.MultipartFile;
 
 public class PatientBean {
 
@@ -14,8 +13,8 @@ public class PatientBean {
 	private String referredBy;
 	private double fees;
 	private double procedureFees;
-	private MultipartFile profilePic;
-	private byte[] profileImageBytes;
+	private String diseaseHistory;
+	private String allergies;
 
 	public int getId() {
 		return id;
@@ -97,20 +96,20 @@ public class PatientBean {
 		this.procedureFees = procedureFees;
 	}
 
-	public MultipartFile getProfilePic() {
-		return profilePic;
+	public String getDiseaseHistory() {
+		return diseaseHistory;
 	}
 
-	public void setProfilePic(MultipartFile profilePic) {
-		this.profilePic = profilePic;
+	public void setDiseaseHistory(String diseaseHistory) {
+		this.diseaseHistory = diseaseHistory;
 	}
 
-	public byte[] getProfileImageBytes() {
-		return profileImageBytes;
+	public String getAllergies() {
+		return allergies;
 	}
 
-	public void setProfileImageBytes(byte[] profileImageBytes) {
-		this.profileImageBytes = profileImageBytes;
+	public void setAllergies(String allergies) {
+		this.allergies = allergies;
 	}
 
 	@Override
@@ -119,7 +118,8 @@ public class PatientBean {
 				+ ", age=" + age + ", sex=" + sex + ", address=" + address
 				+ ", contactNo=" + contactNo + ", referredBy=" + referredBy
 				+ ", fees=" + fees + ", procedureFees=" + procedureFees
-				+ ", profilePic=" + profilePic + "]";
+				+ ", diseaseHistory=" + diseaseHistory + ", allergies="
+				+ allergies + "]";
 	}
 
 }

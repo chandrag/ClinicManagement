@@ -14,6 +14,8 @@ import com.icare.entities.PatientEntity;
 import com.icare.exceptions.NoDataFoundException;
 import com.icare.exceptions.PatientServiceException;
 import com.icare.repositories.PatientRepository;
+import com.icare.utils.BeanCreatorUtil;
+import com.icare.utils.EntityCreatorUtil;
 
 @Service
 public class PatientService {
@@ -24,43 +26,34 @@ public class PatientService {
 	private PatientRepository patientRepository;
 
 	public void save(PatientBean patientBean) throws PatientServiceException {
-		PatientEntity patientEntity = new PatientEntity();
-		patientEntity.setAddress(patientBean.getAddress());
-		patientEntity.setAge(patientBean.getAge());
-		patientEntity.setContactNo(patientBean.getContactNo());
-		patientEntity.setFees(patientBean.getFees());
-		patientEntity.setId(patientBean.getId());
-		patientEntity.setMrdNo(patientBean.getMrdNo());
-		patientEntity.setName(patientBean.getName());
-		patientEntity.setProcedureFees(patientBean.getProcedureFees());
-		patientEntity.setReferredBy(patientBean.getReferredBy());
-		patientEntity.setSex(patientBean.getSex());
+		PatientEntity patientEntity = EntityCreatorUtil
+				.createPatientEntity(patientBean);
 		patientRepository.save(patientEntity);
 		patientBean.setId(patientEntity.getId());
 	}
 
 	public List<PatientBean> searchPatient(String name)
 			throws NoDataFoundException {
-		List<PatientEntity> searchedPatients = patientRepository.findByNameContaining(name);
+		List<PatientEntity> searchedPatients = patientRepository
+				.findByNameContaining(name);
 		List<PatientBean> patients = new ArrayList<PatientBean>();
 		if (CollectionUtils.isEmpty(searchedPatients)) {
 			throw new NoDataFoundException("No patients found");
 		}
 		for (PatientEntity entity : searchedPatients) {
-			PatientBean bean = new PatientBean();
-			bean.setAddress(entity.getAddress());
-			bean.setAge(entity.getAge());
-			bean.setContactNo(entity.getContactNo());
-			bean.setFees(entity.getFees());
-			bean.setId(entity.getId());
-			bean.setMrdNo(entity.getMrdNo());
-			bean.setName(entity.getName());
-			bean.setProcedureFees(entity.getProcedureFees());
-			bean.setReferredBy(entity.getReferredBy());
-			bean.setSex(entity.getSex());
+			PatientBean bean = BeanCreatorUtil.createPatientBean(entity);
 			patients.add(bean);
 		}
 		return patients;
 	}
 
+	public PatientBean findById(Integer id) {
+		PatientEntity entity = patientRepository.findOne(id);
+		return BeanCreatorUtil.createPatientBean(entity);
+	}
+
+	public Integer delete(Integer patientId) {
+		patientRepository.delete(patientId);
+		return patientId;
+	}
 }

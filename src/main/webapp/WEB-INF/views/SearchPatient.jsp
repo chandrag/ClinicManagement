@@ -28,7 +28,7 @@
 	<c:if test="${fn:length(patients) > 0}">
 	<div class="row">
 		<div class="col-md-12 panel panel-default">
-			<form id="editPatientFrm" action="edit" method="post">
+			<form id="editPatientFrm" action="edit" method="get">
 				<input id="pid" type="hidden" name="pid" value="-1"/>
 				<table class="table">
 					<thead>
@@ -55,7 +55,8 @@
 							<td>${patient.address}</td>
 							<td>
 								<div align="center">
-									<button type="button" title="${patient.id}" id="editBtn" class="btn-link">Edit</button>
+									<button type="button" title="${patient.id}" class="btn-link editBtn">Edit</button>
+									<button type="button" title="${patient.id}" class="btn-link deleteBtn">Delete</button>
 								</div>
 							</td>
 						</tr>

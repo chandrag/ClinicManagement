@@ -38,7 +38,7 @@ public class PatientController {
 		return ViewNames.RegisterPatient.name();
 	}
 
-	@RequestMapping(value = "create", method = RequestMethod.POST)
+	@RequestMapping(value = "save", method = RequestMethod.POST)
 	public String addPatient(PatientBean patientBean, Model model) {
 		try {
 			patientService.save(patientBean);
@@ -66,6 +66,23 @@ public class PatientController {
 			mav.addObject(MessageConstants.MESSAGE, e.getMessage());
 		}
 		return mav;
+	}
+
+	@RequestMapping(value = "edit", method = RequestMethod.GET)
+	public ModelAndView editPatient(@ModelAttribute("pid") Integer patientId) {
+		ModelAndView modelAndView = new ModelAndView(
+				ViewNames.RegisterPatient.name());
+		PatientBean patientBean = patientService.findById(patientId);
+		modelAndView.addObject("patient", patientBean);
+		return modelAndView;
+	}
+
+	@RequestMapping(value = "delete", method = RequestMethod.GET)
+	public ModelAndView deletePatient(@ModelAttribute("pid") Integer patientId) {
+		ModelAndView modelAndView = new ModelAndView(
+				ViewNames.SearchPatient.name());
+		patientService.delete(patientId);
+		return modelAndView;
 	}
 
 }

@@ -35,8 +35,10 @@ CREATE TABLE `patient` (
   `referredBy` varchar(150) DEFAULT NULL,
   `fees` double DEFAULT NULL,
   `procedureFees` double DEFAULT NULL,
+  `diseaseHistory` varchar(300) DEFAULT NULL,
+  `allergies` varchar(300) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
