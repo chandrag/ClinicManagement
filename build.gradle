@@ -3,7 +3,6 @@ apply plugin: 'eclipse'
 apply plugin: 'eclipse-wtp'
 apply plugin: 'war'
 apply plugin: 'jetty'
-apply plugin: 'jacoco'
 
 sourceCompatibility = 1.7
 version = '1.0'
